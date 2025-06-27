@@ -65,9 +65,9 @@ bool loadLibrary(const std::string& libPath, void** ppLib, std::string* pError)
   *ppLib = (void*)::LoadLibraryEx(libPath.c_str(), NULL, 0);
 #else
   if (libPath == "NA") {
-    *ppLib = ::dlopen(NULL, RTLD_NOW|RTLD_GLOBAL); // on linux, should we also do: | RTLD_DEEPBIND ??
+    *ppLib = ::dlopen(NULL, RTLD_NOW|RTLD_GLOBAL|RTLD_DEEPBIND); // on linux, should we also do: | RTLD_DEEPBIND ??
   } else {
-    *ppLib = ::dlopen(libPath.c_str(), RTLD_NOW|RTLD_GLOBAL);
+    *ppLib = ::dlopen(libPath.c_str(), RTLD_NOW|RTLD_GLOBAL|RTLD_DEEPBIND);
   }
 #endif
   if (*ppLib == NULL)
