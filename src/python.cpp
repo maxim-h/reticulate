@@ -3039,7 +3039,7 @@ SEXP main_process_python_info_unix() {
 
   // attempt to load some required Python symbols
   void* pLib = NULL;
-  pLib = ::dlopen(NULL, RTLD_NOW | RTLD_GLOBAL | RTLD_DEEPBIND);
+  pLib = ::dlmopen(LM_ID_NEWLM, NULL, RTLD_NOW | RTLD_DEEPBIND);
 
   if (Py_IsInitialized == NULL)
     loadSymbol(pLib, "Py_IsInitialized", (void**) &Py_IsInitialized);
